@@ -1,0 +1,47 @@
+# This file contains metadata for your plugin.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Operacje na punktach
+qgisMinimumVersion=3.0
+description=1. Liczene przewyższeń  2. Liczenie pola powierzchni metodą Gaussa
+version=0.1
+author=Nina Janczak Jan Sychowiec
+email=nina.janczak.stud@pw.edu.pl jan.sychowiec.stud@pw.edu.pl
+
+about=Wtyczka wykonuje poniższe obliczenia: –wybór 2ch punktów z aktywnej warstwy ∗obliczenie różnicy wysokości, ∗podanie na pasku informacyjnym interfejsu QGIS –wybór minimum 3ch punktów z warstwy ∗obliczenie pole powierzchni na podstawie współrzędnych zaznaczonychpunktów metodą Gaussa, ∗podanie na pasku informacyjnym interfejsu QGIS
+
+tracker=http://bugs
+repository=https://github.com/NinaJanczak/projekt_2_informatyka.git
+# End of mandatory metadata
+
+# Recommended items:
+
+hasProcessingProvider=no
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=python qgis
+
+homepage=http://homepage
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
+# Since QGIS 3.8, a comma separated list of plugins to be installed
+# (or upgraded) can be specified.
+# Check the documentation for more information.
+# plugin_dependencies=
+
+Category of the plugin: Raster, Vector, Database or Web
+# category=
+
+# If the plugin can run on QGIS Server.
+server=False
+
