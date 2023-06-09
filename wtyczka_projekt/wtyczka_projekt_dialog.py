@@ -26,6 +26,8 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.core import QgsVectorLayer
+
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -42,22 +44,34 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        self.klik_przewyzszenie.cliked.connect(self.wysokosc)
+        self.klik_przewyzszenie.clicked.connect(self.wysokosc)
         # self.klik_pole.cliked.connect(self.pole)
+        
 
-        def wysokosc(self): 
-            liczba_elementów = len(self.wybor_warstwy.currentLayer().selectedFeatures())
-            if liczba_elementów == 2: 
-                wybrane_elementy = self.wybor_warstwy.currentLayer().selectedFeatures() 
-                K=[]
-                for element in wybrane_elementy:
-                    wsp = element.geometry().asPoint()
-                    Z = wsp.z()
-                    K.append(Z)
-                    roznica_wysokosci=K[0]-K[1]
-                self.label_wynik_przewyzszenie.setText(f'{roznica_wysokosci:.3f}')
-            elif liczba_elementów < 2:
-                self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
-            elif liczba_elementów > 2:
-                self.label_wynik_przewyzszenie.setText("Wybrano za dużo punktów")
-        # def pole(self):
+
+    def wysokosc(self): 
+        warstwa = self.wybor_warstwy.currentLayer()
+        liczba_elementów = len(warstwa.selectedFeatures())
+        if liczba_elementów == 2: 
+            Nr = []
+            X = []
+            Y = []
+            Z = []
+            wybrane_elementy = warstwa.selectedFeatures() 
+            for elementy in  wybrane_elementy:
+                pnr = elementy["Nr"]
+                px = elementy["X"]
+                py = elementy["Y"]
+                pz = elementy["Z"]
+                Nr.append(pnr)
+                X.append(px)
+                Y.append(py)
+                Z.append(pz)
+            H = Z[1] - Z[0]
+            roznica_wysokosci= H
+            self.label_wynik_przewyzszenie.setText(f'Przewyższenie między punktem {Nr[0]} a {Nr[1]} wynowi {H:.3f} m')
+        elif liczba_elementów < 2:
+            self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
+        elif liczba_elementów > 2:
+            self.label_wynik_przewyzszenie.setText("Wybrano za dużo punktów")
+    #def pole(self):
