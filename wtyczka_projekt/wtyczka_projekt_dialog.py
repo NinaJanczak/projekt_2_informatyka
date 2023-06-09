@@ -28,6 +28,7 @@ from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.core import QgsVectorLayer
 from qgis.PyQt.QtWidgets import QVBoxLayout,QDialog
+import numpy as np
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -76,22 +77,21 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
     def pole(self):
         warstwa = self.wybor_warstwy.currentLayer()
         liczba_elementów = len(warstwa.selectedFeatures())
-        if liczba_elementów == 3: 
-            Nr = []
-            X = []
-            Y = []
-            Z = []
+        if liczba_elementów >= 3: 
+            wspolrzedne = []
             wybrane_elementy = warstwa.selectedFeatures() 
             for elementy in  wybrane_elementy:
-                pnr = elementy["Nr"]
                 px = elementy["X"]
                 py = elementy["Y"]
-                pz = elementy["Z"]
-                Nr.append(pnr)
-                X.append(px)
-                Y.append(py)
-                Z.append(pz)
-            P= abs(0.5 * ((X[1]+X[0]) * (Y[1]-Y[0])+(X[2]+X[1]) * (Y[2]-Y[1]) + (X[0]+X[2]) * (Y[0]-Y[2])))
+                wspolrzedne.append((px,py))
+            wspolrzedne = np.array(wspolrzedne)
+            x = wspolrzedne[:, 0]
+            y = wspolrzedne[:, 1]
+            idx = np.argsort(x)
+            x = x[idx]
+            y = y[idx]
+            P = 0.5 * np.abs(np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))
+            #P= abs(0.5 * ((X[1]+X[0]) * (Y[1]-Y[0])+(X[2]+X[1]) * (Y[2]-Y[1]) + (X[0]+X[2]) * (Y[0]-Y[2])))
             self.label_wyni_pole.setText(f'Pole powierzchni {P:.3f} m^2')
         elif liczba_elementów < 3:
             self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
