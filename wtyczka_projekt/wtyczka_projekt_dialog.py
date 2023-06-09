@@ -43,7 +43,7 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         self.klik_przewyzszenie.cliked.connect(self.wysokosc)
-        self.klik_pole.cliked.connect(self.pole)
+        # self.klik_pole.cliked.connect(self.pole)
 
         def wysokosc(self): 
             liczba_elementów = len(self.wybor_warstwy.currentLayer().selectedFeatures())
@@ -60,4 +60,4 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
                 self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
             elif liczba_elementów > 2:
                 self.label_wynik_przewyzszenie.setText("Wybrano za dużo punktów")
-        def pole(self):
+        # def pole(self):
