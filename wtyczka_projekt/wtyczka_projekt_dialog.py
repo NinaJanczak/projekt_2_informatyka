@@ -45,7 +45,7 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         self.klik_przewyzszenie.clicked.connect(self.wysokosc)
-        # self.klik_pole.cliked.connect(self.pole)
+        self.klik_pole.clicked.connect(self.pole)
         
 
 
@@ -68,10 +68,32 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
                 Y.append(py)
                 Z.append(pz)
             H = Z[1] - Z[0]
-            roznica_wysokosci= H
-            self.label_wynik_przewyzszenie.setText(f'Przewyższenie między punktem {Nr[0]} a {Nr[1]} wynowi {H:.3f} m')
+            self.label_wynik_przewyzszenie.setText(f'Przewyższenie między punktem {Nr[0]} a {Nr[1]} wynosi {H:.3f} m')
         elif liczba_elementów < 2:
             self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
         elif liczba_elementów > 2:
             self.label_wynik_przewyzszenie.setText("Wybrano za dużo punktów")
-    #def pole(self):
+    def pole(self):
+        warstwa = self.wybor_warstwy.currentLayer()
+        liczba_elementów = len(warstwa.selectedFeatures())
+        if liczba_elementów == 3: 
+            Nr = []
+            X = []
+            Y = []
+            Z = []
+            wybrane_elementy = warstwa.selectedFeatures() 
+            for elementy in  wybrane_elementy:
+                pnr = elementy["Nr"]
+                px = elementy["X"]
+                py = elementy["Y"]
+                pz = elementy["Z"]
+                Nr.append(pnr)
+                X.append(px)
+                Y.append(py)
+                Z.append(pz)
+            P= abs(0.5 * ((X[1]+X[0]) * (Y[1]-Y[0])+(X[2]+X[1]) * (Y[2]-Y[1]) + (X[0]+X[2]) * (Y[0]-Y[2])))
+            self.label_wyni_pole.setText(f'Pole powierzchni {P:.3f} m^2')
+        elif liczba_elementów < 3:
+            self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
+        elif liczba_elementów > 3:
+            self.label_wynik_przewyzszenie.setText("Wybrano za dużo punktów")

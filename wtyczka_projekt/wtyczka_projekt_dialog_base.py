@@ -50,11 +50,11 @@ class Ui_WtyczkaProjektDialogBase(object):
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.label_wynik_przewyzszenie = QtWidgets.QLabel(WtyczkaProjektDialogBase)
-        self.label_wynik_przewyzszenie.setGeometry(QtCore.QRect(310, 170, 351, 31))
+        self.label_wynik_przewyzszenie.setGeometry(QtCore.QRect(310, 170, 471, 31))
         self.label_wynik_przewyzszenie.setText("")
         self.label_wynik_przewyzszenie.setObjectName("label_wynik_przewyzszenie")
         self.label_wyni_pole = QtWidgets.QLabel(WtyczkaProjektDialogBase)
-        self.label_wyni_pole.setGeometry(QtCore.QRect(310, 320, 351, 31))
+        self.label_wyni_pole.setGeometry(QtCore.QRect(310, 320, 481, 31))
         self.label_wyni_pole.setText("")
         self.label_wyni_pole.setObjectName("label_wyni_pole")
 
