@@ -166,8 +166,53 @@ p, li { white-space: pre-wrap; }
     <string/>
    </property>
   </widget>
+  <widget class="QgsFeatureListComboBox" name="mFeatureListComboBox">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>170</y>
+     <width>131</width>
+     <height>81</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QgsFieldComboBox" name="mFieldComboBox">
+   <property name="geometry">
+    <rect>
+     <x>619</x>
+     <y>286</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QgsFieldExpressionWidget" name="mFieldExpressionWidget">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>140</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>QgsFeatureListComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsfeaturelistcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsFieldComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsfieldcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsFieldExpressionWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsfieldexpressionwidget.h</header>
+  </customwidget>
   <customwidget>
    <class>QgsMapLayerComboBox</class>
    <extends>QComboBox</extends>

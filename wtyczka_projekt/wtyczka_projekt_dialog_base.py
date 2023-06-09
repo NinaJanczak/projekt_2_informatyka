@@ -57,6 +57,15 @@ class Ui_WtyczkaProjektDialogBase(object):
         self.label_wyni_pole.setGeometry(QtCore.QRect(310, 320, 351, 31))
         self.label_wyni_pole.setText("")
         self.label_wyni_pole.setObjectName("label_wyni_pole")
+        self.mFeatureListComboBox = QgsFeatureListComboBox(WtyczkaProjektDialogBase)
+        self.mFeatureListComboBox.setGeometry(QtCore.QRect(660, 170, 131, 81))
+        self.mFeatureListComboBox.setObjectName("mFeatureListComboBox")
+        self.mFieldComboBox = QgsFieldComboBox(WtyczkaProjektDialogBase)
+        self.mFieldComboBox.setGeometry(QtCore.QRect(619, 286, 181, 51))
+        self.mFieldComboBox.setObjectName("mFieldComboBox")
+        self.mFieldExpressionWidget = QgsFieldExpressionWidget(WtyczkaProjektDialogBase)
+        self.mFieldExpressionWidget.setGeometry(QtCore.QRect(400, 140, 211, 51))
+        self.mFieldExpressionWidget.setObjectName("mFieldExpressionWidget")
 
         self.retranslateUi(WtyczkaProjektDialogBase)
         self.button_box.rejected.connect(WtyczkaProjektDialogBase.reject) # type: ignore
@@ -76,6 +85,9 @@ class Ui_WtyczkaProjektDialogBase(object):
         self.klik_pole.setText(_translate("WtyczkaProjektDialogBase", "Oblicz pole powierzchni"))
         self.label_2punkty.setText(_translate("WtyczkaProjektDialogBase", "Wybierz 2 punkty"))
         self.label_3punkty.setText(_translate("WtyczkaProjektDialogBase", "Wybierz minumum 3 punkty"))
+from qgsfeaturelistcombobox import QgsFeatureListComboBox
+from qgsfieldcombobox import QgsFieldComboBox
+from qgsfieldexpressionwidget import QgsFieldExpressionWidget
 from qgsmaplayercombobox import QgsMapLayerComboBox
 
 
