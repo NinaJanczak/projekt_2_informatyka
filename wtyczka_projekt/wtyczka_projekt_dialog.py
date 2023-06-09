@@ -79,10 +79,13 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
         liczba_elementów = len(warstwa.selectedFeatures())
         if liczba_elementów >= 3: 
             wspolrzedne = []
+            Nr = []
             wybrane_elementy = warstwa.selectedFeatures() 
             for elementy in  wybrane_elementy:
+                pnr = elementy["Nr"]
                 px = elementy["X"]
                 py = elementy["Y"]
+                Nr.append(pnr)
                 wspolrzedne.append((px,py))
             wspolrzedne = np.array(wspolrzedne)
             x = wspolrzedne[:, 0]
@@ -94,7 +97,8 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
                 x[-2], x[-1] = x[-1], x[-2]
                 y[-2], y[-1] = y[-1], y[-2]
             P = 0.5 * np.abs(np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))
-            self.label_wyni_pole.setText(f'Pole powierzchni {P:.3f} m^2 = {P/100:.3f} a = {P/10000:.3f} ha')
+            NR = ' '.join(str(numer) for numer in Nr)
+            self.label_wyni_pole.setText(f'Pole powierzchni dla punktów {NR} wynosi {P:.3f} m^2')
         elif liczba_elementów < 3:
             self.label_wynik_przewyzszenie.setText("Wybrano za mało punktów")
         
