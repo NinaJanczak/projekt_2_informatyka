@@ -50,12 +50,16 @@ class Ui_WtyczkaProjektDialogBase(object):
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.label_wynik_przewyzszenie = QtWidgets.QLabel(WtyczkaProjektDialogBase)
-        self.label_wynik_przewyzszenie.setGeometry(QtCore.QRect(310, 170, 471, 31))
+        self.label_wynik_przewyzszenie.setGeometry(QtCore.QRect(310, 150, 471, 71))
         self.label_wynik_przewyzszenie.setText("")
+        self.label_wynik_przewyzszenie.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_wynik_przewyzszenie.setWordWrap(True)
         self.label_wynik_przewyzszenie.setObjectName("label_wynik_przewyzszenie")
         self.label_wyni_pole = QtWidgets.QLabel(WtyczkaProjektDialogBase)
-        self.label_wyni_pole.setGeometry(QtCore.QRect(310, 320, 481, 31))
+        self.label_wyni_pole.setGeometry(QtCore.QRect(310, 300, 481, 71))
         self.label_wyni_pole.setText("")
+        self.label_wyni_pole.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_wyni_pole.setWordWrap(True)
         self.label_wyni_pole.setObjectName("label_wyni_pole")
 
         self.retranslateUi(WtyczkaProjektDialogBase)
@@ -75,7 +79,7 @@ class Ui_WtyczkaProjektDialogBase(object):
         self.klik_przewyzszenie.setText(_translate("WtyczkaProjektDialogBase", "Oblicz przewyższenie"))
         self.klik_pole.setText(_translate("WtyczkaProjektDialogBase", "Oblicz pole powierzchni"))
         self.label_2punkty.setText(_translate("WtyczkaProjektDialogBase", "Wybierz 2 punkty"))
-        self.label_3punkty.setText(_translate("WtyczkaProjektDialogBase", "Wybierz minumum 3 punkty"))
+        self.label_3punkty.setText(_translate("WtyczkaProjektDialogBase", "Wybierz 3 lub 4 punkty"))
 from qgsmaplayercombobox import QgsMapLayerComboBox
 
 
