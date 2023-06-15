@@ -26,6 +26,7 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.core import QgsVectorLayer, QgsWkbTypes
 import numpy as np
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
@@ -81,10 +82,11 @@ class WtyczkaProjektDialog(QtWidgets.QDialog, FORM_CLASS):
             wybrane_elementy = warstwa.selectedFeatures() 
             for elementy in  wybrane_elementy:
                 pnr = elementy["Nr"]
-                px = elementy["X"]
-                py = elementy["Y"]
+                punkt = elementy.geometry().asPoint()
+                X = punkt.x()
+                Y = punkt.y()
+                wspolrzedne.append((X,Y))
                 Nr.append(pnr)
-                wspolrzedne.append((px,py))
             wspolrzedne = np.array(wspolrzedne)
             x = wspolrzedne[:, 0]
             y = wspolrzedne[:, 1]
